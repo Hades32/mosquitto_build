@@ -1,0 +1,12 @@
+FROM centos:7
+
+RUN yum install c-ares openssl libuuid -y
+RUN adduser mosquitto
+
+ADD org.eclipse.mosquitto/src/mosquitto /app/
+ADD org.eclipse.mosquitto/mosquitto.conf /cfg/
+ADD libwebsockets/build/lib/libwebsockets.so.6 /usr/lib64/
+
+VOLUME /cfg/
+
+CMD /app/mosquitto -c /cfg/mosquitto.conf

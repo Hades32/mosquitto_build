@@ -1,0 +1,9 @@
+FROM centos:7
+
+RUN yum install cmake c-ares-devel c-ares openssl-devel openssl libuuid libuuid-devel gcc-c++ -y
+
+ADD ./compile.sh /
+
+WORKDIR /src
+
+CMD /compile.sh
